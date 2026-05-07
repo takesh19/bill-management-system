@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
-import LoginModal from "./components/LoginModal";
+import Sidebar from "./Components/Sidebar";
+import Navbar from "./Components/Navbar";
+import LoginModal from "./Components/LoginModal";
 
-import Dashboard from "./pages/Dashboard";
-import Customers from "./pages/Customers";
-import Items from "./pages/Items";
-import Billing from "./pages/Billing";
-import Revenue from "./pages/Sales/Revenue";
-import Bills from "./pages/Sales/Bills";
+import Dashboard from "./Pages/Dashboard";
+import Customers from "./Pages/Customers";
+import Items from "./Pages/Items";
+import Billing from "./Pages/Billing";
+import Revenue from "./Pages/Sales/Revenue";
+import Bills from "./Pages/Sales/Bills";
 
 function App() {
 
