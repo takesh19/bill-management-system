@@ -1,0 +1,84 @@
+.billing-new {
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* HEADING */
+.billing-new h1 {
+  margin-bottom: 20px;
+}
+
+.billing-new h3 {
+  margin-bottom: 10px;
+}
+
+/* INPUT + BUTTON */
+.card input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1e40af;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+/* STATUS */
+.pending {
+  color: red;
+  font-weight: bold;
+}
+
+.paid {
+  color: green;
+  font-weight: bold;
+}
+
+/* PAYMENT BOX */
+.payment-box {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+/* SUMMARY TEXT */
+.card p {
+  margin: 5px 0;
+}

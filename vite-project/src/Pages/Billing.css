@@ -1,0 +1,173 @@
+.billing-new {
+  padding: 20px;
+  color: #111;
+}
+
+/* CARD */
+.billing-new .card {
+  background: #fff;
+  color: #111;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* HEADINGS */
+.billing-new h1 {
+  margin-bottom: 20px;
+}
+
+.billing-new h3 {
+  margin-bottom: 15px;
+}
+
+/* GRID */
+.billing-new .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.billing-new .grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* INPUTS */
+.billing-new input,
+.billing-new select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* BUTTON */
+.billing-new .btn {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.billing-new .btn.outline {
+  background: transparent;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+}
+
+/* TABLE */
+.billing-new table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.billing-new th,
+.billing-new td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+/* ACTIONS */
+.billing-new .actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area, #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm;   /* 🔥 main fix */
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px){
+
+  .billing-new{
+    padding: 12px;
+  }
+
+  /* GRID STACK */
+
+  .billing-new .grid-2,
+  .billing-new .grid-4{
+    grid-template-columns: 1fr;
+  }
+
+  /* BUTTONS */
+
+  .billing-new .actions{
+    flex-direction: column;
+  }
+
+  .billing-new .actions .btn{
+    width: 100%;
+  }
+
+  /* TABLE */
+
+  .billing-new table{
+    min-width: 650px;
+  }
+
+  /* CARD */
+
+  .billing-new .card{
+    padding: 15px;
+  }
+
+  /* HEADINGS */
+
+  .billing-new h1{
+    font-size: 28px;
+  }
+
+  .billing-new h2{
+    font-size: 22px;
+  }
+
+  .billing-new h3{
+    font-size: 18px;
+  }
+
+  /* INPUTS */
+
+  .billing-new input,
+  .billing-new select{
+    font-size: 16px;
+  }
+
+}
+
+.summary-box{
+  margin-top: 15px;
+  padding: 15px;
+
+  background: #f8fafc;
+
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}

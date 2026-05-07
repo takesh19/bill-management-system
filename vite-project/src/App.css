@@ -1,0 +1,128 @@
+*{
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img{
+  max-width: 100%;
+}
+
+table{
+  min-width: 600px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #0f172a;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.sidebar a:hover {
+  background: #1e293b;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 20px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* Card UI */
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px){
+
+  h1{
+    font-size: 28px !important;
+  }
+
+  h2{
+    font-size: 22px !important;
+  }
+
+  h3{
+    font-size: 18px !important;
+  }
+
+  /* FORM ROWS */
+
+  .form-row{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row button{
+    width: 100% !important;
+  }
+
+  /* TABLES */
+
+  table{
+    min-width: 700px;
+  }
+
+  .table-wrapper{
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  /* CARDS */
+
+  .cards,
+  .stats-container,
+  .dashboard-cards{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* CHARTS */
+
+  .chart-container,
+  .chart-container-1{
+    overflow-x: auto;
+  }
+
+}
