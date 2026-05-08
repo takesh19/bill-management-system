@@ -10,6 +10,8 @@ const LoginModal = ({ closeModal, setIsLoggedIn }) => {
   const handleLogin = async () => {
 
     try {
+      console.log(email, password);
+      
 
       const res = await axios.post(
         "https://bill-management-backend-sj5x.onrender.com/api/auth/login",
@@ -18,6 +20,9 @@ const LoginModal = ({ closeModal, setIsLoggedIn }) => {
           password
         }
       );
+
+      console.log(res.data);
+      
 
       localStorage.setItem(
         "token",
@@ -35,9 +40,9 @@ const LoginModal = ({ closeModal, setIsLoggedIn }) => {
 
       closeModal();
 
-    } catch (err) {
+    } catch (error) {
 
-      console.log(err);
+      console.log(error.response.data);
 
       alert("Invalid credentials ❌");
 
