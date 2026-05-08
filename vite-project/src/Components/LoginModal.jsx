@@ -12,7 +12,7 @@ const LoginModal = ({ closeModal, setIsLoggedIn }) => {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://bill-management-backend-sj5x.onrender.com/api/auth/login",
         {
           email,
           password

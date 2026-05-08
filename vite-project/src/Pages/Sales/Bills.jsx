@@ -19,7 +19,7 @@ const Bills = () => {
 
   const fetchBills = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/bills");
+    const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills");
     setBills(res.data);
   } catch (err) {
     console.log(err);
@@ -60,7 +60,7 @@ const Bills = () => {
     };
 
     await axios.put(
-      `http://localhost:5000/api/bills/${bill._id}`,
+      `https://bill-management-backend-sj5x.onrender.com/api/bills/${bill._id}`,
       updatedData
     );
 
@@ -88,7 +88,7 @@ const Bills = () => {
   try {
 
     await axios.delete(
-      `http://localhost:5000/api/bills/${id}`
+      `https://bill-management-backend-sj5x.onrender.com/api/bills/${id}`
     );
 
     alert("Bill deleted ✅");

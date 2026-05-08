@@ -46,7 +46,7 @@ const Revenue = () => {
   useEffect(() => {
   const fetchBills = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/bills");
+      const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills");
       const bills = res.data;
 
       setBills(bills); // optional but useful

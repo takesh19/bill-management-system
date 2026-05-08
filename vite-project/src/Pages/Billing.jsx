@@ -54,7 +54,7 @@ const Billing = () => {
   useEffect(() => {
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/items");
       setItemsList(res.data);
     } catch (err) {
       console.log(err);
@@ -66,7 +66,7 @@ const Billing = () => {
 
   useEffect(() => {
   if (id) {
-    axios.get(`http://localhost:5000/api/bills`)
+    axios.get(`https://bill-management-backend-sj5x.onrender.com/api/bills`)
       .then(res => {
         const found = res.data.find(b => b._id === id);
 
@@ -93,7 +93,7 @@ const Billing = () => {
     if(id) return;
   const fetchBillNo = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/bills");
+      const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills");
 
       const bills = res.data;
 
@@ -118,7 +118,7 @@ const Billing = () => {
 
     try {
 
-      const res = await axios.get("http://localhost:5000/api/bills");
+      const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills");
 
       const uniqueCustomers = [];
 
@@ -207,11 +207,11 @@ const Billing = () => {
   try {
     if (id) {
       //  UPDATE
-      await axios.put(`http://localhost:5000/api/bills/${id}`, billData);
+      await axios.put(`https://bill-management-backend-sj5x.onrender.com/api/bills/${id}`, billData);
       alert("Bill Updated ✅");
     } else {
       //  CREATE
-      await axios.post("http://localhost:5000/api/bills", billData);
+      await axios.post("https://bill-management-backend-sj5x.onrender.com/api/bills", billData);
       alert("Bill Created ✅");
     }
 

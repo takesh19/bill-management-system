@@ -26,7 +26,7 @@ const Items = () => {
 
   const fetchItems = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/items");
+    const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/items");
     setItems(res.data);
   } catch (err) {
     console.log(err);
@@ -69,14 +69,14 @@ const newServices = {
     if (existing) {
       // UPDATE
       console.log(existing)
-      await axios.put(`http://localhost:5000/api/items/${existing._id}`, {
+      await axios.put(`https://bill-management-backend-sj5x.onrender.com/api/items/${existing._id}`, {
         name: form.name,
         services: newServices
       });
       alert("Item Updated ✅");
     } else {
       // CREATE
-      await axios.post("http://localhost:5000/api/items", {
+      await axios.post("https://bill-management-backend-sj5x.onrender.com/api/items", {
         name: form.name,
         services: newServices
       });
@@ -104,7 +104,7 @@ const newServices = {
   // 🔥 DELETE ITEM
   const deleteItem = async (id) => {
   try {
-    await axios.delete(`http://localhost:5000/api/items/${id}`);
+    await axios.delete(`https://bill-management-backend-sj5x.onrender.com/api/items/${id}`);
 
     await fetchItems();
 

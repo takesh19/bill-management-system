@@ -44,7 +44,7 @@ function Dashboard() {
       try {
 
         const res = await axios.get(
-          "http://localhost:5000/api/bills"
+          "https://bill-management-backend-sj5x.onrender.com/api/bills"
         );
 
         setBills(res.data);
