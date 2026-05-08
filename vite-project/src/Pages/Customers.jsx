@@ -19,7 +19,7 @@ const Customers = () => {
 
   const handleView = async (mobile) => {
   try {
-    const res = await axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills");
+    const res = await axios.get("https://bill-management-backend-1-1gij.onrender.com/api/bills");
 
     const filtered = res.data.filter(b => b.mobile === mobile);
 
@@ -31,7 +31,7 @@ const Customers = () => {
   };
 
   useEffect(() => {
-  axios.get("https://bill-management-backend-sj5x.onrender.com/api/bills")
+  axios.get("https://bill-management-backend-1-1gij.onrender.com/api/bills")
     .then(res => {
       const bills = res.data;
 
@@ -110,7 +110,7 @@ const modalStyle = {
   try {
 
     const res = await axios.get(
-      "https://bill-management-backend-sj5x.onrender.com/api/bills"
+      "https://bill-management-backend-1-1gij.onrender.com/api/bills"
     );
 
     const customerBills = res.data.filter(
@@ -121,7 +121,7 @@ const modalStyle = {
     await Promise.all(
       customerBills.map((b) =>
         axios.delete(
-          `https://bill-management-backend-sj5x.onrender.com/api/bills/${b._id}`
+          `https://bill-management-backend-1-1gij.onrender.com/api/bills/${b._id}`
         )
       )
     );

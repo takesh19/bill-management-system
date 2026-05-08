@@ -14,7 +14,7 @@ const LoginModal = ({ closeModal, setIsLoggedIn }) => {
       
 
       const res = await axios.post(
-        "https://bill-management-backend-sj5x.onrender.com/api/auth/login",
+        "https://bill-management-backend-1-1gij.onrender.com/api/auth/login",
         {
           email,
           password
