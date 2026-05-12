@@ -182,7 +182,7 @@ const Billing = () => {
     setForm({ ...form, qty: "" });
   };
 
-  const itemOptions = items.map((item) => ({
+  const itemOptions = itemsList.map((item) => ({
     value: item.name,
     label: item.name
   }));
@@ -392,10 +392,13 @@ const Billing = () => {
 
         <div className="grid-4">
           <Select
-            options = {itemOption}
+            options = {itemOptions}
             placeholder = "Select item"
             onChange ={(selected) =>
-            setSelectedItem(selected.value)
+            setForm({
+              ...form,
+              item:selected.value
+            })
             } 
           />
 
