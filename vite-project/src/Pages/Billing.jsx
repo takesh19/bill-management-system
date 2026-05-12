@@ -182,6 +182,12 @@ const Billing = () => {
     setForm({ ...form, qty: "" });
   };
 
+  const itemOptions = items.map((item) => ({
+    value: item.name,
+    label: item.name
+  }));
+
+
   const generateBill = async () => {
 
   const discount = Number(form.discount || 0);
@@ -325,11 +331,6 @@ const Billing = () => {
   message += `RIGHT CHOICE DRYCLEANERS`;
 
   const url = `https://wa.me/91${form.mobile}?text=${encodeURIComponent(message)}`;
-
-  const itemOptions = items.map((item) => ({
-    value: item.name,
-    label: item.name
-  }));
 
   window.open(url, "_blank");
   };
