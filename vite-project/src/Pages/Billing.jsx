@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import  axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import Select from "react-select";
 
 const Billing = () => {
 
@@ -325,6 +326,11 @@ const Billing = () => {
 
   const url = `https://wa.me/91${form.mobile}?text=${encodeURIComponent(message)}`;
 
+  const itemOptions = items.map((item) => ({
+    value: item.name,
+    label: item.name
+  }));
+
   window.open(url, "_blank");
   };
 
@@ -384,15 +390,13 @@ const Billing = () => {
         <h3>Add Item</h3>
 
         <div className="grid-4">
-          <select
-            value={form.item}
-            onChange={(e) => setForm({ ...form, item: e.target.value })}
-          >
-            <option>Select Item</option>
-            {itemsList.map((i, index) => (
-              <option key={index}>{i.name}</option>
-            ))}
-          </select>
+          <Select
+            options = {itemsOption}
+            placeholder = "Select item"
+            onChange ={(selected) =>
+            setSelectedItem(selected.value)
+            } 
+          />
 
           <select
             value={form.service}
@@ -521,10 +525,10 @@ const Billing = () => {
 
   {/* Print preview */}
   <div id="print-area" style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
-  <div style={{ width: "72mm", fontFamily: "monospace", fontSize: "18px" }}>
+  <div style={{ width: "80mm", fontFamily: "monospace", fontSize: "18px" }}>
 
     <div style={{ textAlign: "center" }}>
-      <img src="/logo.png" width="90" /><br />
+      <img src="https://bill-management-system-wb4w.onrender.com/logo.png" width="90" /><br />
       <b style={{ fontSize: "20px" }}>RIGHT CHOICE DRYCLEANERS</b><br />
       Infront of PNB Bank Smriti Nagar Bhilai<br />
       Contact: 6261810154
@@ -544,7 +548,7 @@ const Billing = () => {
 
     <div style={{ borderTop: "1px dashed black", margin: "6px 0" }}></div>
 
-    <table style={{ width: "100%", fontSize: "12px", borderCollapse: "collapse" }}>
+    <table style={{ width: "100%", fontSize: "18px", borderCollapse: "collapse" }}>
   <thead>
     <tr>
       <th style={{ textAlign: "left" }}>Item</th>
