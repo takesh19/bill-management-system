@@ -391,7 +391,7 @@ const Billing = () => {
 
         <div className="grid-4">
           <Select
-            options = {itemsOption}
+            options = {itemOption}
             placeholder = "Select item"
             onChange ={(selected) =>
             setSelectedItem(selected.value)
@@ -525,11 +525,11 @@ const Billing = () => {
 
   {/* Print preview */}
   <div id="print-area" style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
-  <div style={{ width: "80mm", fontFamily: "monospace", fontSize: "18px" }}>
+  <div style={{ width: "80mm", fontFamily: "monospace", fontSize: "16px" }}>
 
     <div style={{ textAlign: "center" }}>
       <img src="https://bill-management-system-wb4w.onrender.com/logo.png" width="90" /><br />
-      <b style={{ fontSize: "20px" }}>RIGHT CHOICE DRYCLEANERS</b><br />
+      <b style={{ fontSize: "18px" }}>RIGHT CHOICE DRYCLEANERS</b><br />
       Infront of PNB Bank Smriti Nagar Bhilai<br />
       Contact: 6261810154
     </div>
@@ -548,7 +548,7 @@ const Billing = () => {
 
     <div style={{ borderTop: "1px dashed black", margin: "6px 0" }}></div>
 
-    <table style={{ width: "100%", fontSize: "18px", borderCollapse: "collapse" }}>
+    <table style={{ width: "100%", fontSize: "16px", borderCollapse: "collapse" }}>
   <thead>
     <tr>
       <th style={{ textAlign: "left" }}>Item</th>
