@@ -521,13 +521,13 @@ const Billing = () => {
 
   {/* Print preview */}
   <div id="print-area" style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
-  <div style={{ width: "72mm", fontFamily: "monospace", fontSize: "13px" }}>
+  <div style={{ width: "72mm", fontFamily: "monospace", fontSize: "18px" }}>
 
     <div style={{ textAlign: "center" }}>
       <img src="/logo.png" width="90" /><br />
-      <b style={{ fontSize: "14px" }}>RIGHT CHOICE DRYCLEANERS</b><br />
+      <b style={{ fontSize: "20px" }}>RIGHT CHOICE DRYCLEANERS</b><br />
       Infront of PNB Bank Smriti Nagar Bhilai<br />
-      Contact: XXXXXXXX
+      Contact: 6261810154
     </div>
 
     <div style={{ borderTop: "1px dashed black", margin: "6px 0" }}></div>
