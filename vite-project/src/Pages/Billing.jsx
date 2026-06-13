@@ -230,27 +230,70 @@ const Billing = () => {
 
   const printBill = () => {
   const printContent = document.getElementById("print-area").innerHTML;
-  const win = window.open("", "", "width=300,height=600");
+
+  const win = window.open("", "", "width=800,height=1000");
 
   win.document.write(`
     <html>
-      <head>
-        <title>Print Bill</title>
-        <style>
-          body {
-            width: 80mm;
-            font-family: monospace;
-          }
-        </style>
-      </head>
-      <body>
+    <head>
+      <title>Print Bill</title>
+
+      <style>
+
+      @page{
+        size: 80mm auto;
+        margin: 0;
+      }
+
+      html,body{
+        margin:0;
+        padding:0;
+        width:80mm;
+        font-family: monospace;
+        font-size:18px;
+      }
+
+      #print-root{
+        width:78mm;
+        padding:2mm;
+        box-sizing:border-box;
+      }
+
+      table{
+        width:100%;
+        border-collapse:collapse;
+        table-layout:fixed;
+      }
+
+      th,td{
+        padding:2px;
+        overflow:hidden;
+      }
+
+      img{
+        max-width:120px;
+      }
+
+      </style>
+
+    </head>
+
+    <body>
+
+      <div id="print-root">
         ${printContent}
-      </body>
+      </div>
+
+    </body>
     </html>
   `);
 
   win.document.close();
-  win.print();
+
+  setTimeout(() => {
+    win.print();
+    win.close();
+  }, 1000);
 };
 
 
@@ -552,14 +595,14 @@ const Billing = () => {
 
     <div style={{ borderTop: "1px dashed black", margin: "6px 0" }}></div>
 
-    <table style={{ width: "100%", fontSize: "16px", borderCollapse: "collapse" }}>
+    <table style={{ width: "100%",tableLayout:"fixed", fontSize: "18px", borderCollapse: "collapse" }}>
   <thead>
     <tr>
-      <th style={{ textAlign: "left" }}>Item</th>
-      <th style={{ textAlign: "center" }}>Svc</th>
-      <th style={{ textAlign: "center" }}>Qty</th>
-      <th style={{ textAlign: "right" }}>Rate</th>
-      <th style={{ textAlign: "right" }}>Amt</th>
+      <th style={{width:"35%", textAlign: "left" }}>Item</th>
+      <th style={{width:"15%", textAlign: "center" }}>Svc</th>
+      <th style={{width:"10%", textAlign: "center" }}>Qty</th>
+      <th style={{width:"20%", textAlign: "right" }}>Rate</th>
+      <th style={{width:"20%", textAlign: "right" }}>Amt</th>
     </tr>
   </thead>
 
