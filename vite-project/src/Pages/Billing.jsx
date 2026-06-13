@@ -538,9 +538,10 @@ const Billing = () => {
     />
 
     <select
-      value={form.payment || "Cash"}
+      value={form.payment || ""}
       onChange={(e) => setForm({ ...form, payment: e.target.value })}
     >
+      <option>Select</option>
       <option>Cash</option>
       <option>UPI</option>
       <option>Card</option>
@@ -610,7 +611,11 @@ const Billing = () => {
     {cart.map((i, index) => (
       <tr key={index}>
         <td>{i.item}</td>
-        <td style={{ textAlign: "center" }}>{i.service}</td>
+        <td style={{ textAlign: "center" }}>
+          {i.service === "RollingPress"?"RP"
+          :i.service === "Steam"?"ST"
+        :i.service}
+          </td>
         <td style={{ textAlign: "center" }}>{i.qty}</td>
         <td style={{ textAlign: "right" }}>{i.rate}</td>
         <td style={{ textAlign: "right" }}>{i.amount}</td>
@@ -633,7 +638,7 @@ const Billing = () => {
       )}
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <b>Final:</b> ₹{total - form.discount}
+        <b>Final:</b> ₹{total - Number(form.discount||0)}
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
