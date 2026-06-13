@@ -179,7 +179,13 @@ const Billing = () => {
 
     setCart([...cart, newItem]);
 
-    setForm({ ...form, qty: "" });
+    setForm({
+      ...form,
+      item:"",
+      service:"Dry",
+      qty:"",
+      rate:""
+    });
   };
 
   const itemOptions = itemsList.map((item) => ({
@@ -378,6 +384,28 @@ const Billing = () => {
   window.open(url, "_blank");
   };
 
+  const saveAndPrint = async () => {
+    await generateBill();
+    printBill();
+
+    setTimeout(() => {
+    setCart([]);
+
+  setForm({
+    name: "",
+    mobile: "",
+    item: "",
+    service: "Dry",
+    qty: "",
+    rate: "",
+    discount: "",
+    paid: "",
+    payment: "",
+    delivery: ""
+  });
+  }, 3000);
+  };
+
   return (
     <div className="billing-new">
 
@@ -556,10 +584,10 @@ const Billing = () => {
   </div>
 
   <div className="actions">
-    <button className="btn" onClick={generateBill}>
+    {/* <button className="btn" onClick={generateBill}>
     Generate
-    </button>
-    <button className="btn outline" onClick={printBill}>Print</button>
+    </button> */}
+    <button className="btn outline" onClick={saveAndPrint}>Save & Print</button>
     <button className="btn" onClick={downloadPDF}>
     Download PDF
     </button>
