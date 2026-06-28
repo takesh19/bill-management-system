@@ -740,7 +740,7 @@ const Billing = () => {
 
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <span>Payment: {form.payment}</span>
-      <span>Delivery: {formateDate(form.delivery)}</span>
+      <span>Delivery: {formatDate(form.delivery)}</span>
     </div>
 
     <div style={{ borderTop: "2px solid black", margin: "6px 0" }}></div>
