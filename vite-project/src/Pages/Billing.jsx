@@ -199,7 +199,7 @@ const Billing = () => {
   };
 
   const removeItem = (index) =>{
-    const updateCart = cart.filter((_, i) => i !== index);
+    const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
   }
 
@@ -213,25 +213,23 @@ const Billing = () => {
 
     if(!form.name.trim()){
       alert("Customer Name is required");
-      return;
+      return false;
     }
 
     if(!form.mobile.trim()){
       alert("Mobile Number is required");
-      return;
+      return false;
     }
 
     if(cart.length===0){
       alert("Please add at least one item");
-      return;
+      return false;
     }
 
     if(form.mobile.length !== 10){
       alert("Enter valid monile number");
-      return;
-    }
-
-  const [saving, setSaving] = useSatate(false);  
+      return false;
+    }  
 
   const discount = Number(form.discount || 0);
   const paid = Number(form.paid || 0);
@@ -275,6 +273,8 @@ const Billing = () => {
   } finally{
     setSaving(false);
   }
+
+  return true;
 };
 
   const printBill = () => {
@@ -428,7 +428,10 @@ const Billing = () => {
   };
 
   const saveAndPrint = async () => {
-    await generateBill();
+    const saved = await generateBill();
+
+    if(!saved) return;
+
     printBill();
 
     setTimeout(() => {
@@ -737,7 +740,7 @@ const Billing = () => {
 
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <span>Payment: {form.payment}</span>
-      <span>Delivery: {form.delivery}</span>
+      <span>Delivery: {formateDate(form.delivery)}</span>
     </div>
 
     <div style={{ borderTop: "2px solid black", margin: "6px 0" }}></div>
