@@ -13,6 +13,8 @@ const Bills = () => {
   const [search, setSearch] = useState("");
   const [payNow, setPayNow] = useState("");
 
+  const [selectedDate, setSelectedDate] = useState("");
+
   useEffect(() => {
   fetchBills();
   }, []);
@@ -32,15 +34,27 @@ const Bills = () => {
 
   // 🔍 SEARCH BILL
   const searchBill = () => {
-    const found = bills.find(b => String(b.billNo) === search);
 
-    if (!found) {
-      alert("Bill not found ❌");
-      return;
-    }
+  const value = search.trim().toLowerCase();
 
-    setBill(found);
-  };
+  const found = bills.find((b) => {
+
+    return (
+      String(b.billNo) === value ||
+      b.name?.toLowerCase().includes(value) ||
+      b.mobile?.includes(value)
+    );
+
+  });
+
+  if (!found) {
+    alert("Bill not found ❌");
+    return;
+  }
+
+  setBill(found);
+
+ };
 
   // 💰 PAYMENT UPDATE
   const handlePayment = async () => {
@@ -107,6 +121,14 @@ const Bills = () => {
 
   };
 
+  const formateDate = (date) => {
+    if(!date) return"";
+
+    return new Date(date)
+    .toLocaleDateString("en-GB")
+    .replace(/\//g, "-");
+  }
+
   return (
     <div className="billing-new">
 
@@ -115,71 +137,68 @@ const Bills = () => {
       {/* 🔍 SEARCH */}
       <div className="card">
         <input
-          placeholder="Enter Bill No"
+          placeholder="Search by Bill No/ Name/ Mobile No"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => {
+            if(e.key === "Enter"){
+              serchBills();
+            }
+          }}
         />
+
+        <input
+         type="date"
+         value={selectedDate}
+         onChange={(e) =>
+          setSelectedDate(e.target.value)
+         } 
+         />
+
+         <button
+         className="btn"
+         onClick={() => setSelectedDate("")}
+         >
+          clear
+         </button>
 
         <button className="btn" onClick={searchBill}>
           Search
         </button>
       </div>
 
-       <h2>All Bills</h2>
-
-        <div className="table-wrapper">
-        <table>
-         <thead>
-         <tr>
-         <th>Bill No</th>
-         <th>Name</th>
-         <th>Amount</th>
-         <th>Status</th>
-         <th>Action</th>
-         </tr>
-        </thead>
-
-        <tbody>
-          {token ? (
-          bills.map((b) => (
-          <tr key={b._id}>
-          <td>{b.billNo}</td>
-          <td>{b.name}</td>
-          <td>₹{b.final}</td>
-          <td>
-          {b.balance > 0 ? "🔴 Pending" : "🟢 Paid"}
-          </td>
-          <td>
-          <button onClick={() => setBill(b)}>View</button>
-
-          <button onClick={() => handleEdit(b)}>Edit</button>
-
-          <button
-            onClick={() => handleDelete(b._id)}
-            style={{ background: "red", color: "white" }}
-            >
-              Delete
-          </button>
-
-        </td>
-        </tr>
-        ))
-      ):(
-        <tr>
-          <td colSpan={"5"} style={{textAlign: "center"}}>
-            Login to view bills
-          </td>
-        </tr>
-      )}
-        </tbody>
-        </table>
-        </div>
-
-      {/* 📄 BILL DETAILS */}
       {bill && (
         <div className="card">
+           <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "15px"
+  }}
+>
+  <h3>📄 Bill Details</h3>
 
-          <h3>Bill No: {bill.billNo}</h3>
+  <button
+    onClick={() => setBill(null)}
+    style={{
+      background: "#dc3545",
+      color: "white",
+      border: "none",
+      borderRadius: "50%",
+      width: "32px",
+      height: "32px",
+      cursor: "pointer",
+      fontSize: "18px",
+      fontWeight: "bold"
+    }}
+  >
+    ✕
+  </button>
+</div>
+
+
+          <h4>Bill No: {bill.billNo}</h4>
 
           <p><b>Name:</b> {bill.name}</p>
           <p><b>Mobile:</b> {bill.mobile}</p>
@@ -239,6 +258,67 @@ const Bills = () => {
         </div>
       )}
 
+
+       <h2>All Bills</h2>
+
+        <div className="table-wrapper">
+        <table>
+         <thead>
+         <tr>
+         <th>Bill No</th>
+         <th>Name</th>
+         <th>Amount</th>
+         <th>Date</th>
+         <th>Status</th>
+         <th>Action</th>
+         </tr>
+        </thead>
+
+        <tbody>
+          {token ? (
+          bills
+          .filter((b) => {
+            if(!selectedDate) return true;
+
+            return b.date?.slice(0, 10) === selectedDate;
+          })
+          .map((b) => (
+          <tr key={b._id}>
+          <td>{b.billNo}</td>
+          <td>{b.name}</td>
+          <td>₹{b.final}</td>
+          <td>{formateDate(b.date)}</td>
+          <td>
+          {b.balance > 0 ? "🔴 Pending" : "🟢 Paid"}
+          </td>
+          <td>
+          <button onClick={() => setBill(b)}>View</button>
+
+          <button onClick={() => handleEdit(b)}>Edit</button>
+
+          <button
+            onClick={() => handleDelete(b._id)}
+            style={{ background: "red", color: "white" }}
+            >
+              Delete
+          </button>
+
+        </td>
+        </tr>
+        ))
+      ):(
+        <tr>
+          <td colSpan={"6"} style={{textAlign: "center"}}>
+            Login to view bills
+          </td>
+        </tr>
+      )}
+        </tbody>
+        </table>
+        </div>
+
+      {/* 📄 BILL DETAILS */}
+      
     </div>
   );
 };

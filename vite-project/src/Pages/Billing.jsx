@@ -31,6 +31,14 @@ const Billing = () => {
 
   const services = ["Dry", "Steam", "Wash", "RollingPress"];
 
+  const formatDate = (date) => {
+    if(!date)return"";
+
+    return new Date(date)
+    .toLocaleDateString("en-GB")
+    .replace(/\//g,"-");
+  };
+
   useEffect(() => {
   if (id) {
     const bills = JSON.parse(localStorage.getItem("bills")) || [];
@@ -188,6 +196,11 @@ const Billing = () => {
     });
   };
 
+  const removeItem = (index) =>{
+    const updateCart = cart.filter((_, i) => i !== index);
+    setCart(updatedCart);
+  }
+
   const itemOptions = itemsList.map((item) => ({
     value: item.name,
     label: item.name
@@ -196,11 +209,36 @@ const Billing = () => {
 
   const generateBill = async () => {
 
+    if(!form.name.trim()){
+      alert("Customer Name is required");
+      return;
+    }
+
+    if(!form.mobile.trim()){
+      alert("Mobile Number is required");
+      return;
+    }
+
+    if(cart.length===0){
+      alert("Please add at least one item");
+      return;
+    }
+
+    if(form.mobile.length !== 10){
+      alert("Enter valid monile number");
+      return;
+    }
+
+  const [saving, setSaving] = useSatate(false);  
+
   const discount = Number(form.discount || 0);
   const paid = Number(form.paid || 0);
 
   const final = total - discount;
   const balance = final - paid;
+
+  if(saving) return;
+  setSaving(true);
 
   const billData = {
     name: form.name,
@@ -231,6 +269,9 @@ const Billing = () => {
   } catch (err) {
     console.log(err);
     alert("Error ❌");
+
+  } finally{
+    setSaving(false);
   }
 };
 
@@ -518,6 +559,7 @@ const Billing = () => {
                 <th>Qty</th>
                 <th>Rate</th>
                 <th>Amt</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -529,6 +571,14 @@ const Billing = () => {
                   <td>{i.qty}</td>
                   <td>{i.rate}</td>
                   <td>{i.amount}</td>
+                  <td>
+                    <button
+                      className="delete-btn"
+                      onClick={()=> removeItem(index)}
+                    >
+                      Remove
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -561,7 +611,7 @@ const Billing = () => {
 
     <input
       type="date"
-      value={form.delivery || ""}
+      value={formatDate(form.delivery) || ""}
       onChange={(e) => setForm({ ...form, delivery: e.target.value })}
     />
 
@@ -587,7 +637,10 @@ const Billing = () => {
     {/* <button className="btn" onClick={generateBill}>
     Generate
     </button> */}
-    <button className="btn outline" onClick={saveAndPrint}>Save & Print</button>
+    <button className="btn outline" 
+    onClick={saveAndPrint}
+    disabled={saving}
+    >{saving ? "Generating...":"Save & Print"}</button>
     <button className="btn" onClick={downloadPDF}>
     Download PDF
     </button>
@@ -614,7 +667,7 @@ const Billing = () => {
 
     Bill No: {billNo}
     <span style={{ float: "right" }}>
-      Date: {new Date().toLocaleDateString()}
+      Date: {formatDate(new Date())}
     </span>
 
     <div style={{ borderTop: "1px dashed black", margin: "6px 0" }}></div>

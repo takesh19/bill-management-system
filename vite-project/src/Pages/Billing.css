@@ -171,3 +171,16 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.delete-btn {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+}
